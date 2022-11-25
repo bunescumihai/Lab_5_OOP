@@ -7,11 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class ProductRepositoryImpl implements ProductRepository {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
+
 
     @Override
     public void create(Product product) {
@@ -27,12 +30,19 @@ public class ProductRepositoryImpl implements ProductRepository {
     }
 
     @Override
-    public void update(int productId, Product product) {
+    public void update(Product product) {
 
     }
 
     @Override
     public void delete(int productId) {
+        String sql = "Delete from products where product_id = ?";
+        jdbcTemplate.update(sql, productId);
+    }
 
+    @Override
+    public List<Product> getProducts() {
+        String sql = "Select * from products";
+        return jdbcTemplate.query(sql, new ProductRowMapper());
     }
 }
