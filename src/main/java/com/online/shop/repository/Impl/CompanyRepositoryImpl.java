@@ -1,16 +1,24 @@
 package com.online.shop.repository.Impl;
 
+import com.online.shop.entity.entityRowMapper.CompanyRowMapper;
 import com.online.shop.repository.CompanyRepository;
 import com.online.shop.entity.Company;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
 public class CompanyRepositoryImpl implements CompanyRepository {
+
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+
     @Override
     public void create(Company company) {
-
+        String sql = "Insert into companies values(DEFAULT, ?, ?)";
+        jdbcTemplate.update(sql, company.getName(), company.getLink());
     }
 
     @Override
@@ -30,6 +38,7 @@ public class CompanyRepositoryImpl implements CompanyRepository {
 
     @Override
     public List<Company> getCompanies() {
-        return null;
+        String sql = "Select * from companies";
+        return jdbcTemplate.query(sql, new CompanyRowMapper());
     }
 }

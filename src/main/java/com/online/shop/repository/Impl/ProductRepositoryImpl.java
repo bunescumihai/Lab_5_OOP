@@ -15,18 +15,17 @@ public class ProductRepositoryImpl implements ProductRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-
     @Override
     public void create(Product product) {
-        String sql = "Insert into products values(?,?,?,?,?,?,?,?,?)";
-        jdbcTemplate.update(sql, product.getProductId(), product.getName(), product.getCompaniId(), product.getCategoryId(),
+        String sql = "INSERT into products values(DEFAULT, ?, ?, ?,?,?,?, ?, ?)";
+        jdbcTemplate.update(sql, product.getName(), product.getCompanyId(), product.getCategoryId(),
                 product.getSubcategoryId(), product.getPrice(), product.getColor(), product.getWeight(), product.getGuarantee());
     }
 
     @Override
     public Product getProductById(int productId) {
         String sql = "Select * from products where product_id = ?";
-        return jdbcTemplate.queryForObject(sql, new Object[]{productId}, new ProductRowMapper());
+        return jdbcTemplate.queryForObject(sql, new ProductRowMapper(), productId);
     }
 
     @Override
