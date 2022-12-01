@@ -1,10 +1,10 @@
-package com.online.shop.repository;
+package com.online.shop.service;
 
 import com.online.shop.entity.Product;
 
 import java.util.List;
 
-public interface ProductRepository {
+public interface ProductService {
 
     void create(Product product);
 
