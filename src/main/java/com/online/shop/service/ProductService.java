@@ -13,6 +13,4 @@ public interface ProductService {
     void delete(int productId);
 
     List<Product> getProducts();
-
-    List<Product> getProductsByCategoryName(String name);
 }

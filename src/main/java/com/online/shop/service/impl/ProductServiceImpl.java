@@ -43,9 +43,4 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> getProducts() {
         return productRepository.getProducts();
     }
-
-    @Override
-    public List<Product> getProductsByCategoryName(String name) {
-        return null;
-    }
 }
