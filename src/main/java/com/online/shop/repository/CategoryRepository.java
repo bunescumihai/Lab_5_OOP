@@ -1,6 +1,7 @@
 package com.online.shop.repository;
 
 import com.online.shop.entity.Category;
+import com.online.shop.entity.Product;
 import com.online.shop.entity.SubCategory;
 
 import java.util.List;
@@ -10,15 +11,15 @@ public interface CategoryRepository {
 
     void create(Category category);
 
-    Category getCategoryByName(String name);
-
     List<SubCategory> getSubCategories(String name);
 
-    void update(Category category);
-
-    void delete(int categoryId);
+    void update(String categoryName, Category category);
 
     void createSubCategory(SubCategory subCategory);
 
     List<Category> getCategories();
+
+    List<Product> getProductsByCategoryName(String name);
+
+    boolean exists(String name);
 }

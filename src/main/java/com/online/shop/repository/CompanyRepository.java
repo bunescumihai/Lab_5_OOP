@@ -10,11 +10,15 @@ public interface CompanyRepository {
 
     void create(Company company);
 
-    Company getCompanyById(int companyId);
+    Company getCompanyByName(String companyName);
+
+    List<Product> getCompanysProductsByName(String companyName);
 
     void update(Company company);
 
-    void delete(int companyId);
-
     List<Company> getCompanies();
+
+    boolean companyExists(String name);
+
+    boolean companyExists(int companyId);
 }

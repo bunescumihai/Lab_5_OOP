@@ -12,10 +12,8 @@ import java.util.List;
 
 @Service
 public class ProductServiceImpl implements ProductService {
-
     @Autowired
     private ProductRepository productRepository;
-
 
     @Override
     public void create(Product product) {
@@ -34,27 +32,20 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void update(Product product) {
-        if(!productRepository.productExists(product.getProductId()))
-            throw new NotFoundException("Produs cu id = " + product.getProductId() + " nu exista");
-
-        productRepository.update(product);
-    }
-
-    @Override
     public void delete(int productId) {
+        if(!productRepository.productExists(productId))
+            throw new NotFoundException("Produs cu id = " + productId + " nu exista");
 
+        productRepository.delete(productId);
     }
 
     @Override
     public List<Product> getProducts() {
-        return null;
+        return productRepository.getProducts();
     }
 
     @Override
-    public boolean productExists(int id) {
-        return false;
+    public List<Product> getProductsByCategoryName(String name) {
+        return null;
     }
-
-
 }

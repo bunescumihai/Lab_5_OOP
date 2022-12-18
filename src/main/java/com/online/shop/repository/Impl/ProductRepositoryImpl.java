@@ -4,10 +4,8 @@ import com.online.shop.entity.Product;
 import com.online.shop.entity.entityRowMapper.ProductRowMapper;
 import com.online.shop.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.List;
 
@@ -31,11 +29,6 @@ public class ProductRepositoryImpl implements ProductRepository {
     }
 
     @Override
-    public void update(Product product) {
-
-    }
-
-    @Override
     public void delete(int productId) {
         String sql = "Delete from products where product_id = ?";
         jdbcTemplate.update(sql, productId);
@@ -49,12 +42,10 @@ public class ProductRepositoryImpl implements ProductRepository {
 
     @Override
     public boolean productExists(int id) {
-        String sql = "Select count(*) from products where id = ?";
+        String sql = "Select count(*) from products where product_id = ?";
         if(jdbcTemplate.queryForObject(sql, Integer.class, id) != 0)
             return true;
 
         return false;
     }
-
-
 }

@@ -10,11 +10,9 @@ public interface ProductService {
 
     Product getProductById(int productId);
 
-    void update(Product product);
-
     void delete(int productId);
 
     List<Product> getProducts();
 
-    boolean productExists(int id);
+    List<Product> getProductsByCategoryName(String name);
 }

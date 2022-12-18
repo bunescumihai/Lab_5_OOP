@@ -1,4 +1,4 @@
-package md.utm.config;
+package com.online.shop.config;
 
 import java.time.LocalDateTime;
 import java.util.LinkedHashMap;

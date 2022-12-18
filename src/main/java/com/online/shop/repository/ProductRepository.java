@@ -10,8 +10,6 @@ public interface ProductRepository {
 
     Product getProductById(int productId);
 
-    void update(Product product);
-
     void delete(int productId);
 
     List<Product> getProducts();
